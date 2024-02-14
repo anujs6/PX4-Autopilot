@@ -1,0 +1,43 @@
+#!/bin/sh
+#
+# @name ET-NavSwarm
+#
+# @type Rover
+# @class Rover
+#
+# @output Motor1 Speed of left wheels
+# @output Motor2 Speed of right wheels
+#
+# @maintainer ET-NavSwarm Team
+#
+# @board px4_fmu-v2 exclude
+# @board bitcraze_crazyflie exclude
+#
+
+. ${R}etc/init.d/rc.rover_differential_defaults
+
+# No. of cells per battery/May need to be changed to 4 based on ESCs used
+param set-default BAT1_N_CELLS 3
+param set-default BAT1_A_PER_V 36.3675
+
+# Set vehicle type to Ground Rover (10)
+param set-default MAV_TYPE 10
+
+# Sets differential drive turn angle to a max of 60 degrees, pi/3 radans
+param set-default GND_MAX_ANG 1.042
+
+# Distance between front and back axles in meters
+param set-default GND_WHEEL_BASE 0.254
+param set-default RDD_WHEEL_BASE 0.254
+
+# Set XRCE out to TELEM2
+param set-default UXRCE_DDS_CFG 102
+
+# Parameter for Differential or Tank steering (Rover turns by rotating wheels at different speeds)
+param set-default CA_AIRFRAME 6
+
+# Right and Left motors are reversible
+param set-default CA_R_REV 3
+
+# Disable Airspeed Sensor
+param set-default SYS_HAS_NUM_ASPD 0
